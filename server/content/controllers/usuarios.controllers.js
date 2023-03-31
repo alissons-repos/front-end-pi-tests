@@ -11,7 +11,7 @@ async function consultaUsuarios(req, res) {
 			return res.status(200).json(usuarios);
 		})
 		.catch((error) => {
-			logger(error)
+			logger(error);
 			return res.status(500).json({ Erro: 'Erro interno na aplicação!' });
 		});
 }
@@ -26,7 +26,7 @@ async function consultaUsuarioIdAdmin(req, res) {
 			}
 		})
 		.catch((error) => {
-			logger(error)
+			logger(error);
 			return res.status(500).json({ Erro: 'Erro interno na aplicação!' });
 		});
 }
@@ -46,7 +46,7 @@ async function consultaUsuarioId(req, res) {
 			}
 		})
 		.catch((error) => {
-			logger(error)
+			logger(error);
 			return res.status(500).json({ Erro: 'Erro interno na aplicação!' });
 		});
 }
@@ -115,7 +115,7 @@ async function deletaUsuario(req, res) {
 			}
 		})
 		.catch((error) => {
-			logger(error)
+			logger(error);
 			return res.status(500).json({ Erro: 'Erro interno na aplicação!' });
 		});
 }
