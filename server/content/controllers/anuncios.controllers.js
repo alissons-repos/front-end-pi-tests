@@ -52,12 +52,12 @@ const consultaAnunciosUsuario = async (req, res) => {
 };
 
 const adicionaAnuncioUsuario = async (req, res) => {
-	const { tipo, titulo, sexo, raca, quantidade } = req.body;
+	const { titulo, tipo, raca, sexo, quantidade } = req.body;
 
 	// Verificação para criação de um novo anúncio
-	if (!tipo || !titulo || !sexo) {
+	if (!titulo || !tipo || !sexo) {
 		return res.status(422).json({
-			Erro: 'Para criar um anúncio informe: tipo, titulo e sexo, raca e quantidadede são opcionais!',
+			Erro: 'Para criar um anúncio informe: titulo, tipo e sexo, raca e quantidadede são opcionais!',
 		});
 	}
 

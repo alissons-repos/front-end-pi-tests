@@ -14,6 +14,12 @@ const anuncioSchema = new mongoose.Schema(
 			required: true,
 			immutable: true,
 		},
+		titulo: {
+			type: String,
+			required: [true, 'O título do anúncio é obrigatório!'],
+			trim: true,
+			uppercase: true,
+		},
 		tipo: {
 			type: String,
 			required: [true, 'O tipo do anúncio é obrigatório!'],
@@ -24,11 +30,12 @@ const anuncioSchema = new mongoose.Schema(
 				message: 'O tipo do anúncio deve ser: adoção ou cruzamento!',
 			},
 		},
-		titulo: {
+		raca: {
 			type: String,
-			required: [true, 'O título do anúncio é obrigatório!'],
+			required: false,
 			trim: true,
-			uppercase: true,
+			lowercase: true,
+			default: 'srd',
 		},
 		sexo: {
 			type: String,
@@ -40,20 +47,15 @@ const anuncioSchema = new mongoose.Schema(
 				message: 'O sexo deve ser: fêmea, macho ou ambos (em caso de adoção)!',
 			},
 		},
-		raca: {
-			type: String,
-			required: false,
-			trim: true,
-			lowercase: true,
-			default: 'srd',
-		},
 		quantidade: {
 			type: Number,
-			required: () => {
-				return this.tipo === 'adoção';
-			},
+			required: false,
+			// required: () => {
+			// 	return this.tipo === 'adoção';
+			// },
 			min: 1,
 			default: null,
+			// Confirmar requisitos com a equipe
 		},
 	},
 	{

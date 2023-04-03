@@ -20,7 +20,7 @@ router
 	// POST /auth/anuncios/ -> Permite que o usuário logado adicione um novo anúncio
 	.route('/auth/anuncios')
 	.get(middleware.validaToken, anunciosCTRL.consultaAnunciosUsuario)
-	.post(middleware.validaToken, anunciosCTRL.adicionaAnuncioUsuario);
+	.post(anunciosCTRL.adicionaAnuncioUsuario);
 
 router
 	// PATCH /auth/anuncios/:id_A/ -> Permite que o usuário logado atualize um de seus anúncios
