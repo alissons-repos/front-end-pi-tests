@@ -4,7 +4,7 @@ import meuAmigoPet from '../axios/axios.config';
 
 function AuthAnuncios() {
 	const navigate = useNavigate();
-	// const [novoAnuncio, setNovoAnuncio] = useState({});
+	// const [novoAnuncio, setNovoAnuncio] = useState({ titulo, tipo, raca, sexo, quantidade });
 	const [titulo, setTitulo] = useState();
 	const [tipo, setTipo] = useState();
 	const [raca, setRaca] = useState();
@@ -20,15 +20,17 @@ function AuthAnuncios() {
 		// console.log(quantidade);
 
 		const novoAnuncio = { titulo, tipo, raca, sexo, quantidade };
-		console.log(novoAnuncio);
+		// console.log(novoAnuncio);
+	};
 
-		// const cookie = document.cookie
+	const enviaAnuncio = async (event) => {
+		// const token = cookies.tokenUsuario;
 
 		await meuAmigoPet
 			.post('/auth/anuncios', novoAnuncio, {
-				// headers: {
-				// 	Authorization: '',
-				// },
+				headers: {
+					Authorization: 'Bearer ' + token,
+				},
 			})
 			.then((res) => {
 				console.log(res);
