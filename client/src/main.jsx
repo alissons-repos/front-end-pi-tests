@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
+
+import App from './App';
+import { AuthProvider } from './context/AuthProvider';
+// O componente AuthProvider englobará o componente App para transmitir globalmente o contexto definido.
 
 // Páginas
 import Entrar from './routes/Entrar';
@@ -72,6 +75,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<AuthProvider>
+			<RouterProvider router={router} />
+		</AuthProvider>
 	</React.StrictMode>
 );

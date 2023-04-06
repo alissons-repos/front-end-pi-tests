@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import meuAmigoPet from '../axios/axios.config';
+import meuAmigoPet from '../api/axios.config';
 
 function Feed() {
 	const [posts, setPosts] = useState([]);
@@ -16,8 +16,8 @@ function Feed() {
 		// }
 		await meuAmigoPet
 			.get('/anuncios')
-			.then((res) => setPosts(res.data))
-			.catch((error) => console.log(error));
+			.then((res) => setPosts(res?.data))
+			.catch((error) => console.log(error?.response));
 	};
 
 	useEffect(() => {

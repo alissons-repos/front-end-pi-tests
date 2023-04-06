@@ -1,9 +1,10 @@
 import axios from 'axios';
+import path from './routes.config.json';
 
 // const token = cookies.tokenUsuario
 
 const meuAmigoPet = axios.create({
-	baseURL: 'http://localhost:8080/',
+	baseURL: path.base_url,
 	headers: {
 		'Content-Type': 'application/json',
 		// Authorization: `Bearer ${token}`,

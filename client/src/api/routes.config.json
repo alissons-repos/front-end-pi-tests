@@ -1,0 +1,7 @@
+{
+	"base_url": "http://localhost:8080/",
+	"login_url": "/entrar",
+	"auth_usuarios_url": "/auth/usuarios",
+	"auth_anuncios_url": "/auth/anuncios",
+	"auth_pets_url": "/auth/pets"
+}

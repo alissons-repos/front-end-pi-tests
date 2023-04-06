@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import meuAmigoPet from '../axios/axios.config';
+
+import meuAmigoPet from '../api/axios.config';
+import path from '../api/routes.config.json';
 
 function AuthAnuncios() {
 	const navigate = useNavigate();
@@ -11,35 +13,26 @@ function AuthAnuncios() {
 	const [sexo, setSexo] = useState();
 	const [quantidade, setQuantidade] = useState();
 
-	const criaAnuncio = async (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-		// console.log(titulo);
-		// console.log(tipo);
-		// console.log(raca);
-		// console.log(sexo);
-		// console.log(quantidade);
 
 		const novoAnuncio = { titulo, tipo, raca, sexo, quantidade };
 		// console.log(novoAnuncio);
-	};
-
-	const enviaAnuncio = async (event) => {
-		// const token = cookies.tokenUsuario;
 
 		await meuAmigoPet
-			.post('/auth/anuncios', novoAnuncio, {
-				headers: {
-					Authorization: 'Bearer ' + token,
-				},
+			.post(path.auth_usuarios_url, JSON.stringify(novoAnuncio), {
+				// headers: {
+				// 	Authorization: 'Bearer ' + token,
+				// },
 			})
 			.then((res) => {
-				console.log(res);
-				console.log(res.data);
+				// console.log(res);
+				console.log(res?.data);
 				alert('Anúncio criado com sucesso!');
 			})
-			.catch((error) => console.log(error));
+			.catch((error) => console.log(error?.response));
 
-		navigate('/auth/anuncios');
+		navigate(path.auth_usuarios_url);
 	};
 
 	return (
@@ -49,7 +42,7 @@ function AuthAnuncios() {
 				<h2>Criar novo anúncio:</h2>
 			</div>
 			<div className='container'>
-				<form className='row g-3' onSubmit={(event) => criaAnuncio(event)}>
+				<form className='row g-3' onSubmit={handleSubmit}>
 					<div className='col-12'>
 						<label htmlFor='titulo' className='form-label'>
 							Título:
@@ -118,7 +111,36 @@ function AuthAnuncios() {
 							<option value={'macho'}>Macho</option>
 						</select>
 					</div>
-					{/* <div className='col-6'>
+					<div className='col-6'>
+						<label htmlFor='quantidade' className='form-label'>
+							Quantidade (Adoção):
+						</label>
+						<input
+							type='number'
+							className='form-control'
+							name='quantidade'
+							id='quantidade'
+							placeholder='Indique a quantidade de animais para adoção'
+							min={0}
+							step={1}
+							onChange={(event) => {
+								setQuantidade(event.target.value);
+							}}
+						/>
+					</div>
+					<div className='col-12'>
+						<button type='submit' className='btn btn-primary'>
+							Criar
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	);
+}
+
+{
+	/* <div className='col-6'>
 						<fieldset className='row'>
 							<legend className='col-form-label col-sm-2 pt-0'>Sexo:</legend>
 							<div className='col-sm-10'>
@@ -160,33 +182,7 @@ function AuthAnuncios() {
 								</div>
 							</div>
 						</fieldset>
-					</div> */}
-					<div className='col-6'>
-						<label htmlFor='quantidade' className='form-label'>
-							Quantidade (Adoção):
-						</label>
-						<input
-							type='number'
-							className='form-control'
-							name='quantidade'
-							id='quantidade'
-							placeholder='Indique a quantidade de animais para adoção'
-							min={0}
-							step={1}
-							onChange={(event) => {
-								setQuantidade(event.target.value);
-							}}
-						/>
-					</div>
-					<div className='col-12'>
-						<button type='submit' className='btn btn-primary'>
-							Criar
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	);
+					</div> */
 }
 
 export default AuthAnuncios;
