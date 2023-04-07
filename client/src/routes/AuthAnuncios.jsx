@@ -32,7 +32,7 @@ function AuthAnuncios() {
 			})
 			.catch((error) => console.log(error?.response));
 
-		navigate(path.auth_usuarios_url);
+		navigate(path.anuncios_url);
 	};
 
 	return (

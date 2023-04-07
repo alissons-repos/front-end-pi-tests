@@ -1,6 +1,13 @@
 {
 	"base_url": "http://localhost:8080/",
 	"login_url": "/entrar",
+	"registro_url": "/registro",
+	"usuarios_url": "/usuarios",
+	"anuncios_url": "/anuncios",
+	"pets_url": "/pets",
+	"usuarios_id_url": "/usuarios/:id",
+	"anuncios_id_url": "/anuncios/:id",
+	"pets_id_url": "/pets/:id",
 	"auth_usuarios_url": "/auth/usuarios",
 	"auth_anuncios_url": "/auth/anuncios",
 	"auth_pets_url": "/auth/pets"

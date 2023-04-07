@@ -6,6 +6,8 @@ import AuthContext from '../context/AuthProvider';
 import meuAmigoPet from '../api/axios.config';
 import path from '../api/routes.config.json';
 
+import './Entrar.css';
+
 function Entrar() {
 	const { setAuth } = useContext(AuthContext);
 
@@ -45,17 +47,34 @@ function Entrar() {
 	};
 
 	return (
-		<main className='container-fluid'>
-			<div className='d-flex flex-column flex-lg-row justify-content-center my-4'>
-				<div className='container' style={{ width: '50%' }}>
-					<img className='img-fluid rounded' src='../src/assets/img/owner-dog.jpg' alt='' />
+		<main className='body-custom container-fluid'>
+			<div className='row justify-content-center align-items-center' style={{ height: '100vh' }}>
+				<div
+					className='banner-custom col-10 col-lg-5 h-75 align-items-center bg-success px-4 py-5 m-3 text-white'
+					id='banner'
+				>
+					<h1 className='display-2'>Hello, world!</h1>
+					<p className='lead'>
+						This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+						featured content or information.
+					</p>
+					<hr className='my-4' />
+					<p>
+						It uses utility classes for typography and spacing to space content out within the larger
+						container.
+					</p>
+					<a className='btn btn-outline-light btn-lg rounded-4' href='#'>
+						Learn more
+					</a>
 				</div>
-				<div className='container text-white bg-dark rounded p-2' style={{ width: '40%' }}>
-					<h2 className='m-3 text-center'>Entrar</h2>
-					<form onSubmit={handleSubmit}>
-						{/* Não é necessário passar (event) como parâmetro da função handleSubmit */}
-						<div className='mx-3 mb-3'>
-							<label className='form-label' htmlFor='email'>
+				<div
+					className='form-custom col-10 col-lg-5 h-75 align-items-center bg-danger px-4 py-5 m-3 text-white'
+					id='form'
+				>
+					<h2 className='m-3 text-center display-4'>Entrar</h2>
+					<form className='' onSubmit={handleSubmit}>
+						<div className='mx-2 mb-3'>
+							<label className='form-label' for='email'>
 								Email:
 							</label>
 							<input
@@ -70,12 +89,12 @@ function Entrar() {
 								onChange={(event) => setEmail(event.target.value)}
 								value={email} // clear the inputs before submition
 							/>
-							<div className='form-text' id='emailHelp'>
+							<div className='form-text text-white' id='emailHelp'>
 								Não compartilharemos seu email
 							</div>
 						</div>
-						<div className='mx-3 mb-3'>
-							<label className='form-label' htmlFor='password'>
+						<div className='mx-2 mb-3'>
+							<label className='form-label' for='password'>
 								Senha:
 							</label>
 							<input
@@ -90,23 +109,17 @@ function Entrar() {
 								onChange={(event) => setSenha(event.target.value)}
 								value={senha} // clear the inputs before submition
 							/>
-							<div className='form-text' id='passwordHelp'>
+							<div className='form-text text-white' id='passwordHelp'>
 								Utilize uma senha forte
 							</div>
 						</div>
-						<div className='mx-3 mb-3 d-flex justify-content-between align-items-center'>
-							<div>
-								<a className='text-white' href=''>
-									Esqueci minha senha
-									{/* Router Link */}
-								</a>
-								<br />
-							</div>
-							<div>
-								<button className='btn btn-outline-light' type='submit'>
-									Entrar
-								</button>
-							</div>
+						<div className='mx-2 mb-3 d-flex justify-content-between align-items-center'>
+							<a className='text-white' href=''>
+								Esqueci minha senha
+							</a>
+							<button className='btn btn-outline-light' type='submit'>
+								Entrar
+							</button>
 						</div>
 					</form>
 					<div className='mx-3 mb-3'>
@@ -121,63 +134,6 @@ function Entrar() {
 			</div>
 		</main>
 	);
-}
-
-{
-	/* <div className='row d-flex justify-content-between mx-5'>
-				<div className='col-md-6 col-lg-7 text-white'>
-					<img className='img-fluid rounded' src='../src/assets/img/owner-dog.jpg' alt='' />
-				</div>
-				<div className='col-md-6 col-lg-5 text-white bg-dark rounded border'>
-					<h2 className='m-3 text-center'>Entrar</h2>
-					<form>
-						<div className='mx-2 mb-3'>
-							<label className='form-label' htmlFor='email'>
-								Email:
-							</label>
-							<input
-								className='form-control'
-								id='email'
-								name='email'
-								type='email'
-								placeholder='emailbacana@mail.com'
-								required
-								aria-describedby='emailHelp'
-								aria-label='Email'
-							/>
-							<div className='form-text text-white' id='emailHelp'>
-								Não compartilharemos seu email
-							</div>
-						</div>
-						<div className='mx-2 mb-3'>
-							<label className='form-label' htmlFor='password'>
-								Senha:
-							</label>
-							<input
-								className='form-control'
-								id='password'
-								name='password'
-								type='password'
-								placeholder='**********'
-								required
-								aria-describedby='passwordHelp'
-								aria-label='Senha'
-							/>
-							<div className='form-text text-white' id='passwordHelp'>
-								Utilize uma senha forte
-							</div>
-						</div>
-						<div className='mx-2 mb-3 d-flex justify-content-between align-items-center'>
-							<a className='text-white' href=''>
-								Esqueci minha senha
-							</a>
-							<button className='btn btn-outline-light' type='submit'>
-								Entrar
-							</button>
-						</div>
-					</form>
-				</div>
-			</div> */
 }
 
 export default Entrar;

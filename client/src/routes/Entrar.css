@@ -1,0 +1,5 @@
+.banner-custom {
+	background-image: url('../assets/img/dog-backgrounds.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
