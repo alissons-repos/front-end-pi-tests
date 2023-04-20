@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 
+import useAuth from '../hooks/useAuth';
 import AuthContext from '../context/AuthProvider';
 // AuthContext contém o estado global, enquanto AuthProvider é o componente que transporta esse estado.
 
@@ -9,7 +10,7 @@ import path from '../api/routes.config.json';
 import './Entrar.css';
 
 function Entrar() {
-	const { setAuth } = useContext(AuthContext);
+	const { setAuth } = useAuth();
 
 	const [email, setEmail] = useState('');
 	const [senha, setSenha] = useState('');
@@ -32,11 +33,12 @@ function Entrar() {
 			.then((res) => {
 				// console.log(res);
 				console.log(res?.data);
+				// console.log(res?.data.accessToken);
 
-				const accessToken = res?.data?.tokenUsuario;
+				const accessToken = res?.data?.Token;
 				// const roles = res?.data?.roles;
 
-				setAuth({ email, senha, accessToken });
+				setAuth({ email, accessToken });
 				setEmail('');
 				setSenha('');
 			})
@@ -74,7 +76,7 @@ function Entrar() {
 					<h2 className='m-3 text-center display-4'>Entrar</h2>
 					<form className='' onSubmit={handleSubmit}>
 						<div className='mx-2 mb-3'>
-							<label className='form-label' for='email'>
+							<label className='form-label' htmlFor='email'>
 								Email:
 							</label>
 							<input
@@ -94,7 +96,7 @@ function Entrar() {
 							</div>
 						</div>
 						<div className='mx-2 mb-3'>
-							<label className='form-label' for='password'>
+							<label className='form-label' htmlFor='password'>
 								Senha:
 							</label>
 							<input

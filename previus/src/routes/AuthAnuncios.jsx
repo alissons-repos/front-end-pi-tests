@@ -1,10 +1,19 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import meuAmigoPet from '../api/axios.config';
 import path from '../api/routes.config.json';
 
+import AuthContext from '../context/AuthProvider';
+import useAuth from '../hooks/useAuth';
+
+// import AuthContext from '../context/AuthProvider';
+
+// const { auth } = useContext(AuthContext);
+// const token = auth.accessToken;
+
 function AuthAnuncios() {
+	const { auth } = useAuth();
 	const navigate = useNavigate();
 	// const [novoAnuncio, setNovoAnuncio] = useState({ titulo, tipo, raca, sexo, quantidade });
 	const [titulo, setTitulo] = useState();
@@ -19,11 +28,13 @@ function AuthAnuncios() {
 		const novoAnuncio = { titulo, tipo, raca, sexo, quantidade };
 		// console.log(novoAnuncio);
 
+		// const token = auth.accessToken;
+
 		await meuAmigoPet
 			.post(path.auth_usuarios_url, JSON.stringify(novoAnuncio), {
-				// headers: {
-				// 	Authorization: 'Bearer ' + token,
-				// },
+				headers: {
+					Authorization: `Bearer ${auth.accessToken}`,
+				},
 			})
 			.then((res) => {
 				// console.log(res);
